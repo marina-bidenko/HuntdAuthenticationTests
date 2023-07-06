@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/marina-bidenko/HuntdAuthenticationTests#readme",
   "dependencies": {
+    "@playwright/test": "^1.35.1",
     "prettier": "^3.0.0"
   }
 }
