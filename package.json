@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/marina-bidenko/HuntdAuthenticationTests/issues"
   },
-  "homepage": "https://github.com/marina-bidenko/HuntdAuthenticationTests#readme"
+  "homepage": "https://github.com/marina-bidenko/HuntdAuthenticationTests#readme",
+  "dependencies": {
+    "prettier": "^3.0.0"
+  }
 }
