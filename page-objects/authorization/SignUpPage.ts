@@ -1,7 +1,7 @@
 import { Page, Locator, expect } from '@playwright/test';
 import BaseAuthPage from './BaseAuthorizationPage';
 
-class SignUpPage extends BaseAuthPage {
+export class SignUpPage extends BaseAuthPage {
   readonly alreadyHaveAccountButton: Locator;
   readonly repeatPasswordInput: Locator;
   readonly repeatPasswordError: Locator;
