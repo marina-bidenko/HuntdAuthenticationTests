@@ -15,11 +15,12 @@ export class SignUpPage extends BaseAuthPage {
     );
   }
 
-  async login(email: string, password: string, repeatPassword: string = '') {
+  async login(email: string, password: string);
+  async login(email: string, password: string, repeatPassword?: string) {
     await this.typeCredentials(email, password);
     await this.repeatPasswordInput.type(
-      repeatPassword ? repeatPassword : password,
-    );
+      repeatPassword !== undefined ? repeatPassword : password
+    )
     await this.submitClick();
   }
 
