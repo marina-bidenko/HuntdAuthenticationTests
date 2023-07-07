@@ -31,7 +31,7 @@ test.describe('Log out', () => {
     await page.waitForTimeout(300)
   });
 
-  test.only('Should logged out user', async ({ page }) => {
+  test('Should logged out user', async ({ page }) => {
     
     await homePage.visit()
     await homePageIn.logOut();
