@@ -39,9 +39,10 @@ class HomePageLoggedIn extends BasicPage {
     await this.header.profileButton.click();
   }
 
-  async LogOut() {
+  async logOut() {
     await this.clickOnProfileButton();
-    const signOutButton = this.page.locator('.MenuLinks_logOut__GjZ6');
+    await this.page.waitForTimeout(300)
+    const signOutButton = this.page.getByRole('button', {name:'Sign out'});
     await signOutButton.click();
   }
 }
