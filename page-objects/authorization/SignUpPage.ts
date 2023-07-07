@@ -8,7 +8,7 @@ export class SignUpPage extends BaseAuthPage {
 
   constructor(page: Page) {
     super(page);
-    this.repeatPasswordInput = this.page.locator('#repeatePassword');
+    this.repeatPasswordInput = this.page.locator('#repeatPassword');
     this.repeatPasswordError = this.page.$$('.mt-4')[2];
     this.alreadyHaveAccountButton = this.page.locator(
       '.typography_text__zLYFG > a',
