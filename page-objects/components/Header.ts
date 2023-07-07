@@ -40,4 +40,4 @@ class HeaderLoggedOut extends Header {
   }
 }
 
-export { HeaderLoggedIn, HeaderLoggedOut };
+export { HeaderLoggedIn, HeaderLoggedOut, Header };
