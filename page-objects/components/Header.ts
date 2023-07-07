@@ -25,7 +25,7 @@ class HeaderLoggedIn extends Header {
   constructor(page: Page) {
     super(page);
     this.chatsTab = this.navigation.locator('text=Chats');
-    this.profileButton = this.page.locator('header').locator('text=Profile');
+    this.profileButton = this.page.locator('header').getByRole('button', {name: 'Profile'});
   }
 }
 
