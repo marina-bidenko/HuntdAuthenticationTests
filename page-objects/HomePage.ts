@@ -14,7 +14,7 @@ class HomePageLoggedOut extends BasicPage {
     await this.goToHomePage();
   }
 
-  async clickOnSignIN() {
+  async clickOnSignIn() {
     await this.header.signInButton.click();
   }
 
