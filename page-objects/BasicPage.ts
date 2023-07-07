@@ -10,6 +10,6 @@ export abstract class BasicPage {
   }
 
   async goToHomePage() {
-    this.page.goto('https://huntd.tech/');
+    await this.page.goto('https://huntd.tech/');
   }
 }
