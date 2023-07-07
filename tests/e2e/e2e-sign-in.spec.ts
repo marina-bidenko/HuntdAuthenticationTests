@@ -4,6 +4,7 @@ import {
   HomePageLoggedIn,
 } from '../../page-objects/HomePage';
 import {
+  getNewPassword,
   goToSignInPage,
   gotToSignUpPage,
 } from '../../helpers/login';
@@ -18,7 +19,7 @@ test.describe('Logged in', () => {
     signInPage = await goToSignInPage(page);
   });
 
-  test.describe.only('Negative casse for registered user', () => {
+  test.describe('Negative casse for registered user', () => {
     let page: Page;
     let email: string;
     let password: string;
@@ -32,7 +33,7 @@ test.describe('Logged in', () => {
       password = faker.internet.password();
 
       await signUpPage.login(email, password);
-      await page.waitForURL(config.BaseUrl + 'choose-profile');
+      await page.waitForURL(config.BaseUrl + config.succesLogin);
 
       const homePageIn = new HomePageLoggedIn(page);
       await homePageIn.visit();
@@ -42,11 +43,7 @@ test.describe('Logged in', () => {
     });
 
     test('Error message when password is wrong', async ({ page }) => {
-      let wrongPassword = faker.internet.password();
-      while (wrongPassword === password) {
-        wrongPassword = faker.internet.password();
-      }
-
+      const wrongPassword = getNewPassword(password)
       await signInPage.login(email, wrongPassword);
       await page.waitForTimeout(300);
       await signInPage.assertEmailErrorMessage('Wrong credentials');
@@ -95,7 +92,7 @@ test.describe('Logged in', () => {
       password = faker.internet.password();
 
       await signUpPage.login(email, password);
-      await page.waitForURL(config.BaseUrl + 'choose-profile');
+      await page.waitForURL(config.BaseUrl + config.succesLogin);
 
       const homePageIn = new HomePageLoggedIn(page);
       await homePageIn.visit();
@@ -106,8 +103,8 @@ test.describe('Logged in', () => {
 
     test('Singn in when user is registered', async ({ page }) => {
       await signInPage.login(email, password);
-      await page.waitForURL(config.BaseUrl + 'choose-profile');
-      expect(page).toHaveURL(config.BaseUrl + 'choose-profile');
+      await page.waitForURL(config.BaseUrl + config.succesLogin);
+      expect(page).toHaveURL(config.BaseUrl + config.succesLogin);
     });
   });
 });
