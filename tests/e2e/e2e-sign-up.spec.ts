@@ -1,9 +1,10 @@
 import { test, expect } from '@playwright/test';
-import { gotToSignUpPage } from '../../helpers/login';
+import { gotToSignUpPage, getNewPassword } from '../../helpers/login';
 import { SignUpPage } from '../../page-objects/authorization/SignUpPage';
+import { HomePageLoggedIn } from '../../page-objects/HomePage';
 
 const faker = require('faker');
-const config = require('../../config')
+const config = require('../../config');
 
 test.describe('Account creation', () => {
   let signUpPage: SignUpPage;
@@ -11,7 +12,7 @@ test.describe('Account creation', () => {
   let password: string;
 
   test.beforeEach(async ({ page }) => {
-    signUpPage = await gotToSignUpPage(page)
+    signUpPage = await gotToSignUpPage(page);
 
     email = faker.internet.email();
     password = faker.internet.password();
@@ -69,10 +70,7 @@ test.describe('Account creation', () => {
     test('Error message when repeate password doesent match with password', async ({
       page,
     }) => {
-      let password2 = faker.internet.password();
-      while (password == password2) {
-        password2 = faker.internet.password();
-      }
+      const password2 = getNewPassword(password);
 
       await signUpPage.login(email, password, password2);
       await page.waitForTimeout(300);
@@ -80,17 +78,35 @@ test.describe('Account creation', () => {
         'Please make sure your passwords match',
       );
     });
+
+    test('Error message when email already exists', async ({ page }) => {
+      const signUpPage = await gotToSignUpPage(page);
+      await signUpPage.login(email, password);
+      await page.waitForURL(config.BaseUrl + config.succesLogin);
+
+      const homePageIn = new HomePageLoggedIn(page);
+      await homePageIn.goToHomePage();
+      await page.waitForURL(config.BaseUrl);
+      await homePageIn.logOut();
+      await page.waitForURL(config.BaseUrl + 'sign-in');
+
+      await gotToSignUpPage(page);
+      await signUpPage.login(email, password);
+      await page.waitForTimeout(300);
+
+      await signUpPage.assertEmailErrorMessage('Email is already taken.');
+    });
   });
 
   test.describe('Possitive cases', () => {
-    test.skip('Shoud sign up with valid cred', async ({ page }) => {
+    test('Shoud sign up with valid cred', async ({ page }) => {
       const email = await faker.internet.email();
       const password = await faker.internet.password();
 
       await signUpPage.login(email, password);
-      await page.waitForTimeout(3000);
+      await page.waitForURL(config.BaseUrl + config.succesLogin);
 
-      expect(page).toHaveURL(config.BaseUrl + 'choose-profile');
+      expect(page).toHaveURL(config.BaseUrl + config.succesLogin);
     });
   });
 });
