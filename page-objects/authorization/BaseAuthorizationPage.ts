@@ -19,8 +19,8 @@ export default abstract class BaseAuthPage extends BasicPage {
     this.passwordInput = this.page.locator('#password');
     this.submitSingInButton = this.page.locator('form > button');
 
-    this.emailError = this.page.$$('.mt-4')[0];
-    this.passwordError = this.page.locator('.mt-4')[1];
+    this.emailError = this.page.locator('.mt-4').first();
+    this.passwordError = this.page.locator('.mt-4').nth(1);
 
     this.googleButton = this.page.locator('.icon-google');
     this.linkedInButton = this.page.locator('.icon-linkedin');

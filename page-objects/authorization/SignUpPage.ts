@@ -9,7 +9,7 @@ export class SignUpPage extends BaseAuthPage {
   constructor(page: Page) {
     super(page);
     this.repeatPasswordInput = this.page.locator('#repeatPassword');
-    this.repeatPasswordError = this.page.$$('.mt-4')[2];
+    this.repeatPasswordError = this.page.locator('.mt-4').last();
     this.alreadyHaveAccountButton = this.page.locator(
       '.typography_text__zLYFG > a',
     );
