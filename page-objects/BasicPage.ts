@@ -1,6 +1,8 @@
 import { Page } from '@playwright/test';
 import { Header } from './components/Header';
 
+const config = require('../config')
+
 export abstract class BasicPage {
   readonly page: Page;
   readonly header: Header;
@@ -10,6 +12,6 @@ export abstract class BasicPage {
   }
 
   async goToHomePage() {
-    await this.page.goto('https://huntd.tech/');
+    await this.page.goto(config.BaseUrl);
   }
 }

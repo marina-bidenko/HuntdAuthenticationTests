@@ -3,6 +3,7 @@ import { SignUpPage } from '../../page-objects/authorization/SignUpPage';
 import { HomePageLoggedOut } from '../../page-objects/HomePage';
 
 const faker = require('faker');
+const config = require('../../config')
 
 test.describe('Account creation', () => {
   let homePage: HomePageLoggedOut;
@@ -86,14 +87,14 @@ test.describe('Account creation', () => {
   });
 
   test.describe('Possitive cases', () => {
-    test.skip('Shoud sign up with valic cred', async ({ page }) => {
+    test.skip('Shoud sign up with valid cred', async ({ page }) => {
       const email = await faker.internet.email();
       const password = await faker.internet.password();
 
       await signUpPage.login(email, password);
       await page.waitForTimeout(3000);
 
-      expect(page).toHaveURL('https://huntd.tech/choose-profile');
+      expect(page).toHaveURL(config.BaseUrl + 'choose-profile');
     });
   });
 });
