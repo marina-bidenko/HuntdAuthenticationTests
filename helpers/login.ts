@@ -4,6 +4,7 @@ import { SignUpPage } from '../page-objects/authorization/SignUpPage';
 import { HomePageLoggedOut } from '../page-objects/HomePage';
 
 const config = require('../config');
+const faker = require('faker');
 
 export async function goToHomePage(page: Page) {
   const homePage = new HomePageLoggedOut(page);
@@ -24,4 +25,13 @@ export async function gotToSignUpPage(page: Page) {
   await homePage.clickOnSignUp();
   await page.waitForURL(config.BaseUrl + 'sign-up');
   return new SignUpPage(page);
+}
+
+export function getNewPassword(oldPassword: string): string {
+  let password: string;
+  do {
+    password = faker.internet.password();
+  } while (oldPassword === password);
+
+  return password;
 }
