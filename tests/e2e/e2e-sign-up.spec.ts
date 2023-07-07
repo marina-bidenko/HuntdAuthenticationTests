@@ -1,21 +1,17 @@
 import { test, expect } from '@playwright/test';
+import { gotToSignUpPage } from '../../helpers/login';
 import { SignUpPage } from '../../page-objects/authorization/SignUpPage';
-import { HomePageLoggedOut } from '../../page-objects/HomePage';
 
 const faker = require('faker');
 const config = require('../../config')
 
 test.describe('Account creation', () => {
-  let homePage: HomePageLoggedOut;
   let signUpPage: SignUpPage;
   let email: string;
   let password: string;
 
   test.beforeEach(async ({ page }) => {
-    homePage = new HomePageLoggedOut(page);
-    await homePage.visit();
-    await homePage.clickOnSignUp();
-    signUpPage = new SignUpPage(page);
+    signUpPage = await gotToSignUpPage(page)
 
     email = faker.internet.email();
     password = faker.internet.password();
