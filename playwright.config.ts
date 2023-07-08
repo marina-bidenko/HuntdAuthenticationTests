@@ -13,6 +13,7 @@ const config: PlaywrightTestConfig = {
     screenshot: 'only-on-failure',
   },
   reporter: [
+    ['html'],
     ['line'],
     ['allure-playwright']
   ],

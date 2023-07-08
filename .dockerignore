@@ -1,0 +1,5 @@
+allure-results/
+allure-reports/
+allure-report/
+node_modules/
+test-results/
