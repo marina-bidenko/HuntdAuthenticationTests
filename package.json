@@ -6,7 +6,7 @@
   "scripts": {
     "test": "npm run clean && npx playwright test --config=playwright.config.ts",
     "allure:generate": "npx allure generate ./allure-results --clean",
-    "allure:open": "npx allure open .allure-report",
+    "allure:open": "npx allure open",
     "allure:report": "npm run allure:generate && npm run allure:open",
     "clean": "rimraf allure-report/ && rimraf allure-results && rimraf test-results",
     "posttest": "npm run allure:report"
