@@ -38,7 +38,7 @@ test.describe('Account creation', () => {
     test('Error message when password is empty', async ({ page }) => {
       await signUpPage.login(email, '', password);
       await page.waitForTimeout(300);
-      await signUpPage.assertPassordErrorMessage('Password is required');
+      await signUpPage.assertPasswordErrorMessage('Password is required');
     });
 
     test('Error message when repeat password is empty', async ({ page }) => {
@@ -63,7 +63,7 @@ test.describe('Account creation', () => {
       }) => {
         await signUpPage.login(email, passwordCase);
         await page.waitForTimeout(300);
-        await signUpPage.assertPassordErrorMessage('Wrong password');
+        await signUpPage.assertPasswordErrorMessage('Wrong password');
       });
     });
 

@@ -52,7 +52,7 @@ test.describe('Logged in', () => {
     test('Error message when password is empty', async ({ page }) => {
       await signInPage.login(email, '');
       await page.waitForTimeout(300);
-      await signInPage.assertPassordErrorMessage('Password is required');
+      await signInPage.assertPasswordErrorMessage('Password is required');
     });
   });
 
