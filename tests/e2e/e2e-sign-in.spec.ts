@@ -101,7 +101,7 @@ test.describe('Logged in', () => {
       await page.close();
     });
 
-    test('Singn in when user is registered', async ({ page }) => {
+    test('Sign in when user is registered', async ({ page }) => {
       await signInPage.login(email, password);
       await page.waitForURL(config.BaseUrl + config.succesLogin);
       expect(page).toHaveURL(config.BaseUrl + config.succesLogin);
